@@ -64,24 +64,34 @@
         .button-bar > div:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
-        .avatar-circle, .chat-icon {
+        .avatar-circle {
             position: absolute;
-            top: 3px; /* Спускаем на 1 пиксель ниже */
+            top: 3px; /* Позиционирование аватарки */
             left: 50%;
             transform: translateX(-50%);
-            width: 33px; /* Уменьшено на 5 пикселей */
+            width: 33px; /* Размер аватарки */
             height: 33px;
-        }
-        .avatar-circle {
             background-color: #fff; /* Белый фон для аватара */
             border: 2px solid #2c2f33; /* Темно-серая граница для круга */
             border-radius: 50%;
             overflow: hidden;
         }
-        .avatar-circle img, .chat-icon svg {
+        .avatar-circle img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+        .chat-icon {
+            position: absolute;
+            top: 5px; /* Позиционирование иконки чата ниже на 2 пикселя */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 36px; /* Увеличение иконки чата на 3 пикселя */
+            height: 36px;
+        }
+        .chat-icon svg {
+            width: 100%;
+            height: 100%;
         }
         @media (max-width: 768px) {
             body {
@@ -94,9 +104,13 @@
             .button-bar > div {
                 font-size: 14px; /* Уменьшенный шрифт для мобильных устройств */
             }
-            .avatar-circle, .chat-icon {
-                width: 30px; /* Уменьшено еще на 5 пикселей для мобильных устройств */
+            .avatar-circle {
+                width: 30px; /* Уменьшено на 5 пикселей для мобильных устройств */
                 height: 30px;
+            }
+            .chat-icon {
+                width: 33px; /* Уменьшено на 3 пикселя для мобильных устройств */
+                height: 33px;
             }
         }
     </style>
