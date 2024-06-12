@@ -56,6 +56,7 @@
             cursor: pointer;
             border-left: none; /* Убираем левые границы у всех, кроме первого */
             box-sizing: border-box;
+            position: relative;  /* Для позиционирования аватара */
         }
         .button-bar button:first-child {
             border-left: 1px solid #fff; /* Возвращаем левую границу для первого элемента */
@@ -66,17 +67,19 @@
         .button-bar button:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
-        .avatar-container {
-            position: fixed;
-            bottom: 80px; /* Расположен над кнопкой "Профиль" */
-            right: 10px;
+        .avatar-circle {
+            position: absolute;
+            top: -30px;  /* Выставляет над кнопкой */
+            left: 50%;
+            transform: translateX(-50%);
             width: 50px;
             height: 50px;
-            background-color: #fff; /* Белый фон для аватара */
+            background-color: #fff;  /* Белый фон для аватара */
+            border: 2px solid #444;  /* Темно-серая граница для круга */
             border-radius: 50%;
             overflow: hidden;
         }
-        .avatar-container img {
+        .avatar-circle img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -86,15 +89,15 @@
 <body>
     <div class="content"></div> <!-- Пустой блок для центрального контента -->
 
-    <!-- Контейнер для аватара -->
-    <div class="avatar-container">
-        <img src="https://telegram.org/img/t_logo.png" alt="Аватар"> <!-- Здесь будет аватар из Telegram, замените URL на источник данных аватара -->
-    </div>
-
     <div class="button-bar">
         <button>Магазин</button>
         <button>Рефераллы</button>
-        <button>Профиль</button>
+        <button>
+            Профиль
+            <div class="avatar-circle">
+                <img src="" id="avatar-img" alt="Аватар">
+            </div>
+        </button>
     </div>
 
     <script>
@@ -108,6 +111,13 @@
                 leaf.style.animationDuration = `${Math.random() * 3 + 2}s`;
                 leaf.style.animationDelay = `${Math.random() * 5}s`;
                 document.body.appendChild(leaf);
+            }
+            
+            // Получаем аватар из URL параметра
+            const urlParams = new URLSearchParams(window.location.search);
+            const avatarUrl = urlParams.get('avatar_url');
+            if (avatarUrl) {
+                document.getElementById('avatar-img').src = avatarUrl;
             }
         });
     </script>
