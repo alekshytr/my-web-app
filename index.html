@@ -69,8 +69,8 @@
             top: 5px; /* Регулируем верхнее положение */
             left: 50%;
             transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
+            width: 38px; /* Уменьшено на 2 пикселя */
+            height: 38px;
         }
         .avatar-circle {
             background-color: #fff; /* Белый фон для аватара */
@@ -82,6 +82,22 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+        @media (max-width: 768px) {
+            body {
+                background-image: url('https://iimg.su/s/12/4RpD9ISgulTY1a9cmTYyQP1i0yCSx65t5HphpsRX.jpg');
+                background-size: cover;
+            }
+            .button-bar {
+                height: 60px; /* Уменьшенная высота для мобильных устройств */
+            }
+            .button-bar > div {
+                font-size: 14px; /* Уменьшенный шрифт для мобильных устройств */
+            }
+            .avatar-circle, .chat-icon {
+                width: 35px; /* Уменьшено еще на 3 пикселя для мобильных устройств */
+                height: 35px;
+            }
         }
     </style>
 </head>
@@ -118,7 +134,7 @@
                 leaf.style.animationDelay = `${Math.random() * 5}s`;
                 document.body.appendChild(leaf);
             }
-            
+
             // Получаем аватар из URL параметра
             const urlParams = new URLSearchParams(window.location.search);
             const avatarUrl = urlParams.get('avatar_url');
