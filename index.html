@@ -37,29 +37,31 @@
             }
         }
         .button-bar {
-            background-color: rgba(128, 128, 128, 0.7);
-            display: flex;
-            justify-content: space-evenly;
-            padding: 10px 0;
+            background-color: rgba(128, 128, 128, 0.8);
             position: fixed;
             bottom: 0;
-            width: 100%;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
             box-sizing: border-box;
         }
         .button-bar button {
-            flex-grow: 1;
-            padding: 10px;
+            flex: 1;
+            padding: 15px 0;
             background: none;
             border: 1px solid #fff;
             color: #fff;
             font-size: 16px;
             cursor: pointer;
+            border-left: none; /* Убираем левые границы у всех, кроме первого */
+            box-sizing: border-box;
         }
-        .button-bar button:not(:last-child) {
-            margin-right: 5px;
+        .button-bar button:first-child {
+            border-left: 1px solid #fff; /* Возвращаем левую границу для первого элемента */
         }
-        .button-bar button:not(:first-child) {
-            margin-left: 5px;
+        .button-bar button:last-child {
+            border-right: none; /* Убираем правую границу у последнего элемента */
         }
         .button-bar button:hover {
             background-color: rgba(255, 255, 255, 0.2);
