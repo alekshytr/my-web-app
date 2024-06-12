@@ -21,7 +21,7 @@
         .leaf {
             position: fixed;
             top: -10%;
-            width: 25px; /* Уменьшил размер листьев */
+            width: 25px; 
             height: auto;
             pointer-events: none;
             animation: fall linear infinite;
@@ -29,6 +29,11 @@
         @keyframes fall {
             to {
                 transform: translateY(110vh) rotate(360deg);
+            }
+        }
+        @media (max-width: 768px) {
+            body {
+                background-image: url('https://iimg.su/s/12/474hOgH89RJGh6ZMjs9veH95FJstXxXcIDpK2o5u.jpg');
             }
         }
     </style>
