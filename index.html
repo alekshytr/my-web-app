@@ -37,7 +37,7 @@
             }
         }
         .button-bar {
-            background-color: rgba(128, 128, 128, 0.8);
+            background-color: #444; /* Темно-серый цвет фона */
             position: fixed;
             bottom: 0;
             left: 0;
@@ -49,7 +49,7 @@
         .button-bar button {
             flex: 1;
             padding: 15px 0;
-            background: none;
+            background: #444; /* Темно-серый цвет кнопок */
             border: 1px solid #fff;
             color: #fff;
             font-size: 16px;
@@ -66,15 +66,37 @@
         .button-bar button:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
+        .avatar-container {
+            position: fixed;
+            bottom: 80px; /* Расположен над кнопкой "Профиль" */
+            right: 10px;
+            width: 50px;
+            height: 50px;
+            background-color: #fff; /* Белый фон для аватара */
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
     <div class="content"></div> <!-- Пустой блок для центрального контента -->
+
+    <!-- Контейнер для аватара -->
+    <div class="avatar-container">
+        <img src="https://telegram.org/img/t_logo.png" alt="Аватар"> <!-- Здесь будет аватар из Telegram, замените URL на источник данных аватара -->
+    </div>
+
     <div class="button-bar">
         <button>Магазин</button>
         <button>Рефераллы</button>
         <button>Профиль</button>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const numLeaves = 10;
