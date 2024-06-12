@@ -88,8 +88,8 @@
             object-fit: cover;
         }
         .chat-icon {
-            width: 32px; /* Размер изображения */
-            height: 32px;
+            width: 90px; /* Увеличенный размер изображения */
+            height: 90px;
             margin-bottom: 5px; /* Отступ между изображением и текстом */
         }
     </style>
@@ -105,34 +105,4 @@
             </svg>
             Чаты
         </div>
-        <div>
-            Профиль
-            <div class="avatar-circle">
-                <img src="" id="avatar-img" alt="Аватар">
-            </div>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const numLeaves = 10;
-            for (let i = 0; i < numLeaves; i++) {
-                const leaf = document.createElement('img');
-                leaf.src = 'https://iimg.su/s/12/exmO4uSLNzES14k5cvXwo184DncYYsB22W34Zu5I.png';
-                leaf.className = 'leaf';
-                leaf.style.left = `${Math.random() * 100}vw`;
-                leaf.style.animationDuration = `${Math.random() * 3 + 2}s`;
-                leaf.style.animationDelay = `${Math.random() * 5}s`;
-                document.body.appendChild(leaf);
-            }
-            
-            // Получаем аватар из URL параметра
-            const urlParams = new URLSearchParams(window.location.search);
-            const avatarUrl = urlParams.get('avatar_url');
-            if (avatarUrl) {
-                document.getElementById('avatar-img').src = avatarUrl;
-            }
-        });
-    </script>
-</body>
-</html>
+        <Div> Профиль <div class=" avatar-circle "> <img src=" " id=" avatar-img " alt=" Аватар "> </div> </div> </div> <script> document.addEventListener('DOMContentLoaded', () => { const numLeaves = 10; for (let i = 0; i < numLeaves; i++) { const leaf = document.createElement('img'); leaf.src = 'https://iimg.su/s/12/exmO4uSLNzES14k5cvXwo184DncYYsB22W34Zu5I.png'; leaf.className = 'leaf'; leaf.style.left = `${Math.random() * 100}vw`; leaf.style.animationDuration = `${Math.random() * 3 + 2}s`; leaf.style.animationDelay = `${Math.random() * 5}s`; document.body.appendChild(leaf); } // Получаем аватар из URL параметра const urlParams = new URLSearchParams(window.location.search); const avatarUrl = urlParams.get('avatar_url'); if (avatarUrl) { document.getElementById('avatar-img').src = avatarUrl; } }); </script> </body> </html>
