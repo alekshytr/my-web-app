@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALEKS PAY</title>
+    <title>ALEX PAY</title>
     <style>
         body {
             background-image: url('https://iimg.su/s/12/L9Z5cCJeUNZ1BpmzAm7Ruo9S6lDI7ewcAdv20Lwx.jpg');
@@ -17,25 +17,21 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            margin: 0; /* Убираем отступы */
-            padding: 0; /* Убираем отступы */
-            height: 100vh; /* Высота экрана */
-        }
+            margin: 0;
+            padding: 0;
+            height: 100vh;}
         .leaf {
             position: fixed;
             top: -10%;
-            width: 25px; /* Уменьшил размер листьев */
+            width: 25px;
             height: auto;
             pointer-events: none;
-            animation: fall linear infinite;
-        }
+            animation: fall linear infinite;}
         @keyframes fall {
             to {
-                transform: translateY(110vh) rotate(360deg);
-            }
-        }
+                transform: translateY(110vh) rotate(360deg);}}
         .button-bar {
-            background-color: #2c2f33; /* Темно-серый цвет фона, как у @wallet */
+            background-color: #2c2f33;
             position: fixed;
             bottom: 0;
             left: 0;
@@ -43,93 +39,78 @@
             display: flex;
             justify-content: space-between;
             box-sizing: border-box;
-            margin: 0; /* Убираем отступы */
-            height: 70px; /* фиксированная высота */
-        }
+            margin: 0;
+            height: 70px;}
         .button-bar > div {
-            width: 33.33%; /* Уменьшена ширина кнопок */
-            background: #2c2f33; /* Темно-серый цвет кнопок */
+            width: 33.33%;
+            background: #2c2f33;
             color: #fff;
             font-size: 16px;
             cursor: pointer;
-            border-top: 1px solid #fff; /* Оставили только верхнюю границу */
+            border-top: 1px solid #fff;
             box-sizing: border-box;
-            position: relative; /* Для позиционирования элементов */
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-end; /* Сдвигаем текст вниз */
-            padding-bottom: 5px; /* Контролируем нижний padding */
-        }
+            justify-content: flex-end;
+            padding-bottom: 5px;}
         .button-bar > div:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
+            background-color: rgba(255, 255, 255, 0.2);}
         .avatar-circle {
             position: absolute;
-            top: 6px; /* Позиционирование аватарки, смещено на 3 пикселя вниз */
+            top: 6px;
             left: 50%;
             transform: translateX(-50%);
-            width: 33px; /* Размер аватарки */
+            width: 33px;
             height: 33px;
-            background-color: #fff; /* Белый фон для аватара */
-            border: 2px солидный.dot #2c2f33; /* Темно-серая граница для круга */
+            background-color: #fff;
+            border: 2px solid #2c2f33;
             border-radius: 50%;
-            overflow: hidden;
-        }
+            overflow: hidden;}
         .avatar-circle img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-        }
+            object-fit: cover;}
         .emoji {
             position: absolute;
-            top: 3px; /* Позиционирование эмодзи */
+            top: 3px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 38px; /* Размер эмодзи уменьшен на 1 пиксель */
-            line-height: 1; /* Сброс межстрочного интервала */
-        }
+            font-size: 38px;
+            line-height: 1; }
         .chat-icon {
             position: absolute;
-            top: 3px; /* Позиционирование иконки чата */
+            top: 3px;
             left: 50%;
             transform: translateX(-50%);
-            width: 39px; /* Размер иконки чата */
-            height: 39px;
-        }
+            width: 39px;
+            height: 39px;}
         .chat-icon svg {
             width: 100%;
-            height: 100%;
-        }
+            height: 100%;}
         @media (max-width: 768px) {
             body {
                 background-image: url('https://iimg.su/s/12/4RpD9ISgulTY1a9cmTYyQP1i0yCSx65t5HphpsRX.jpg');
-                background-size: cover;
-            }
+                background-size: cover;}
             .button-bar {
-                height: 60px; /* Уменьшенная высота для мобильных устройств */
-            }
+                height: 60px;}
             .button-bar > div {
-                font-size: 14px; /* Уменьшенный шрифт для мобильных устройств */
-            }
+                font-size: 14px;}
             .avatar-circle {
-                width: 30px; /* Уменьшено на 5 пикселей для мобильных устройств */
+                width: 30px;
                 height: 30px;
-                top: 6px; /* Смещение на 3 пикселя вниз для мобильных устройств */
-            }
+                top: 6px;}
             .emoji {
-                font-size: 35px; /* Размер эмодзи для мобильных устройств уменьшен на 1 пиксель */
-                left: calc(50% - 1px); /* Смещаем эмодзи на 2 пикселя влево */
-            }
+                font-size: 35px;
+                left: calc(50% - 1px);}
             .chat-icon {
-                width: 36px; /* Размер иконки чата для мобильных устройств */
-                height: 36px;
-            }
-        }
+                width: 36px;
+                height: 36px;}}
     </style>
 </head>
 <body>
-    <div class="content"></div> <!-- Пустой блок для центрального контента -->
+    <div class="content"></div>
 
     <div class="button-bar">
         <div>
@@ -162,16 +143,11 @@
                 leaf.style.left = `${Math.random() * 100}vw`;
                 leaf.style.animationDuration = `${Math.random() * 3 + 2}s`;
                 leaf.style.animationDelay = `${Math.random() * 5}s`;
-                document.body.appendChild(leaf);
-            }
-
-            // Получаем аватар из URL параметра
+                document.body.appendChild(leaf);}
             const urlParams = new URLSearchParams(window.location.search);
             const avatarUrl = urlParams.get('avatar_url');
             if (avatarUrl) {
-                document.getElementById('avatar-img').src = avatarUrl;
-            }
-        });
+                document.getElementById('avatar-img').src = avatarUrl;}});
     </script>
 </body>
 </html>
