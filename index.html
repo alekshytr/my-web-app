@@ -60,17 +60,19 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: flex-end; /* Сдвигаем текст вниз */
+            height: 70px; /* Контролируем высоту кнопки */
         }
         .button-bar > div:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
         .avatar-circle, .chat-icon {
             position: absolute;
-            top: -25px; /* Регулируем верхнее положение */
+            top: 5px; /* Регулируем верхнее положение */
             left: 50%;
             transform: translateX(-50%);
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
         }
         .avatar-circle {
             background-color: #fff; /* Белый фон для аватара */
