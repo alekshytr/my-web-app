@@ -1,11 +1,53 @@
- <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Приветственное сообщение</title>
-    </head>
-    <body>
-        <h1>Привет!</h1>
-    </body>
-    </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приветственное сообщение</title>
+    <style>
+        body {
+            background-image: url('https://iimg.su/s/12/L9Z5cCJeUNZ1BpmzAm7Ruo9S6lDI7ewcAdv20Lwx.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            text-align: center;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        h1 {
+            padding-top: 20%;
+        }
+        .leaf {
+            position: fixed;
+            top: -10%;
+            width: 50px;
+            height: auto;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Привет!</h1>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const numLeaves = 10;
+            for (let i = 0; i < numLeaves; i++) {
+                const leaf = document.createElement('img');
+                leaf.src = 'https://i.imgur.com/O6kbrjH.png'; // URL изображения листа
+                leaf.className = 'leaf';
+                leaf.style.left = `${Math.random() * 100}vw`;
+                leaf.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                leaf.style.animationDelay = `${Math.random() * 5}s`;
+                document.body.appendChild(leaf);
+            }
+        });
+    </script>
+</body>
+</html>
