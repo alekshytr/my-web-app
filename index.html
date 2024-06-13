@@ -152,7 +152,7 @@
             display: none;
         }
 
-        .profile-header > div {
+        .profile-header>div {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -214,6 +214,30 @@
             user-select: text;
         }
 
+        .profile-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .profile-buttons a {
+            display: block;
+            margin: 10px 12px;
+            padding: 15px 0;
+            border: 1px solid white;
+            border-radius: 25px;
+            background: #2c2f33;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            flex: 1;
+        }
+
+        .profile-buttons a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
         @media (max-width: 768px) {
             body {
                 background-image: url('https://iimg.su/s/12/4RpD9ISgulTY1a9cmTYyQP1i0yCSx65t5HphpsRX.jpg');
@@ -258,8 +282,8 @@
             height: 24px;
         }
 
-        .profile-header > div:hover svg,
-        .profile-header > div:active svg {
+        .profile-header>div:hover svg,
+        .profile-header>div:active svg {
             color: #18a0fb;
             fill: #18a0fb;
         }
@@ -310,7 +334,7 @@
         <div class="profile-balance">
             <img src="https://playerok.com/images/Icons/Wallet.png" alt="Баланс">
             <div class="balance-info">
-                <span class="balance-amount">307,40&nbsp;₽</span>
+                <span>Баланс:</span> <span class="balance-amount" id="balance-amount"></span>
             </div>
         </div>
         <div class="profile-avatar">
@@ -320,7 +344,11 @@
                 <p class="copyable" id="telegram-id">ID: 131321312</p>
             </div>
         </div>
-        <!-- Остальной контент профиля -->
+
+        <div class="profile-buttons">
+            <a href="#" id="shopping-button">Покупки</a>
+            <a href="#" id="replenish-button">Пополнения</a>
+        </div>
     </div>
 
     <script>
@@ -340,7 +368,7 @@
             const avatarUrl = urlParams.get('avatar_url');
             const username = urlParams.get('username');
             const telegramId = urlParams.get('id');
-            const balance = urlParams.get('balance');
+            const balance = urlParams.get('balance') || 0; // Если баланс отсутствует, то установить 0
 
             if (avatarUrl) {
                 document.getElementById('avatar-img').src = avatarUrl;
@@ -355,9 +383,7 @@
                 document.getElementById('telegram-id').innerText = `ID: ${telegramId}`;
             }
 
-            if (balance) {
-                document.querySelector('.balance-amount').innerText = `${balance} ₽`;
-            }
+            document.getElementById('balance-amount').innerText = `${balance} ₽`;
 
             const profileBtn = document.getElementById('profile-btn');
             const profileHeader = document.getElementById('profile-header');
@@ -394,7 +420,10 @@
             });
 
             document.getElementById('telegram-id').addEventListener('click', () => {
-                navigator.clipboard.writeText(telegramId)
+                navigator.clipboard.writeText(`ID: ${telegramId}`)
+                    .then(() => {
+                        alert('ID скопирован в буфер обмена');
+                    })
                     .catch(err => {
                         console.error('Ошибка при копировании ID:', err);
                     });
@@ -402,5 +431,4 @@
         });
     </script>
 </body>
-
 </html>
