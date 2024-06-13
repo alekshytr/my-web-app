@@ -60,9 +60,25 @@
             align-items: center;
             justify-content: flex-end;
             padding-bottom: 5px;
+            transition: color 0.3s;
         }
         .button-bar > div:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0); /* Убрана светло-серая область подсветки */
+        }
+        .button-bar > div:hover .emoji,
+        .button-bar > div:active .emoji {
+            color: #18a0fb; /* Новый цвет */
+        }
+        .button-bar > div:hover .chat-icon,
+        .button-bar > div:active .chat-icon,
+        .button-bar > div:hover .chat-icon svg,
+        .button-bar > div:active .chat-icon svg {
+            color: #18a0fb; /* Новый цвет */
+            fill: #18a0fb; /* Новый цвет */
+        }
+        .button-bar > div:hover span,
+        .button-bar > div:active span {
+            color: #18a0fb; /* Новый цвет */
         }
         .avatar-circle {
             position: absolute;
@@ -87,6 +103,7 @@
             transform: translateX(-50%);
             font-size: 38px;
             line-height: 1;
+            transition: color 0.3s; /* Плавный переход цвета */
         }
         .chat-icon {
             position: absolute;
@@ -95,10 +112,12 @@
             transform: translateX(-50%);
             width: 39px;
             height: 39px;
+            transition: fill 0.3s; /* Плавный переход цвета заполнения */
         }
         .chat-icon svg {
             width: 100%;
             height: 100%;
+            transition: fill 0.3s; /* Плавный переход цвета заполнения */
         }
         @media (max-width: 768px) {
             body {
@@ -133,7 +152,7 @@
     <div class="button-bar">
         <div>
             <div class="emoji">🎮</div>
-            Магазин
+            <span>Магазин</span>
         </div>
         <div>
             <div class="chat-icon">
@@ -141,10 +160,10 @@
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M5 7L6 6H27L27.9912 7.13216L25.9912 22.1322L25 23H16.4142L11.7071 27.7071L10 27V23H6L5 22V7ZM14 14.5C14 15.3284 13.3284 16 12.5 16C11.6716 16 11 15.3284 11 14.5C11 13.6716 11.6716 13 12.5 13C13.3284 13 14 13.6716 14 14.5ZM19.5 16C20.3284 16 21 15.3284 21 14.5C21 13.6716 20.3284 13 19.5 13C18.6716 13 18 13.6716 18 14.5C18 15.3284 18.6716 16 19.5 16Z" fill="currentColor"></path>
                 </svg>
             </div>
-            Чаты
+            <span>Чаты</span>
         </div>
         <div>
-            Профиль
+            <span>Профиль</span>
             <div class="avatar-circle">
                 <img src="" id="avatar-img" alt="Аватар">
             </div>
