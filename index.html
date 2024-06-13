@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +22,7 @@
             padding: 0;
             height: 100vh;
         }
+
         .leaf {
             position: fixed;
             top: -10%;
@@ -29,11 +31,13 @@
             pointer-events: none;
             animation: fall linear infinite;
         }
+
         @keyframes fall {
             to {
                 transform: translateY(110vh) rotate(360deg);
             }
         }
+
         .button-bar {
             background-color: #2c2f33;
             position: fixed;
@@ -46,7 +50,8 @@
             margin: 0;
             height: 70px;
         }
-        .button-bar > div {
+
+        .button-bar>div {
             width: 33.33%;
             background: #2c2f33;
             color: #fff;
@@ -61,42 +66,49 @@
             justify-content: flex-end;
             padding-bottom: 5px;
             transition: color 0.3s;
-            -webkit-tap-highlight-color: transparent; /* Убирает светло-серую подсветку при нажатии на мобильных устройствах */
+            -webkit-tap-highlight-color: transparent;
         }
-        .button-bar > div:hover {
-            background-color: rgba(255, 255, 255, 0); /* Убирана светло-серая область подсветки */
+
+        .button-bar>div:hover {
+            background-color: rgba(255, 255, 255, 0);
         }
-        .button-bar > div:hover .emoji,
-        .button-bar > div:active .emoji {
-            color: #18a0fb; /* Новый цвет */
+
+        .button-bar>div:hover .emoji,
+        .button-bar>div:active .emoji {
+            color: #18a0fb;
         }
-        .button-bar > div:hover .chat-icon,
-        .button-bar > div:active .chat-icon,
-        .button-bar > div:hover .chat-icon svg,
-        .button-bar > div:active .chat-icon svg {
-            color: #18a0fb; /* Новый цвет */
-            fill: #18a0fb; /* Новый цвет */
+
+        .button-bar>div:hover .chat-icon,
+        .button-bar>div:active .chat-icon,
+        .button-bar>div:hover .chat-icon svg,
+        .button-bar>div:active .chat-icon svg {
+            color: #18a0fb;
+            fill: #18a0fb;
         }
-        .button-bar > div:hover span,
-        .button-bar > div:active span {
-            color: #18a0fb; /* Новый цвет */
+
+        .button-bar>div:hover span,
+        .button-bar>div:active span {
+            color: #18a0fb;
         }
+
         .avatar-circle {
             position: absolute;
-            top: 5px; /* Поднял на 1 пиксель */
+            top: 5px;
             left: 50%;
             transform: translateX(-50%);
-            width: 34px; /* Увеличен размер на 1 пиксель */
-            height: 34px; /* Увеличен размер на 1 пиксель */
+            width: 34px;
+            height: 34px;
             background-color: #fff;
             border-radius: 50%;
             overflow: hidden;
         }
+
         .avatar-circle img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+
         .emoji {
             position: absolute;
             top: 3px;
@@ -104,8 +116,9 @@
             transform: translateX(-50%);
             font-size: 38px;
             line-height: 1;
-            transition: color 0.3s; /* Плавный переход цвета */
+            transition: color 0.3s;
         }
+
         .chat-icon {
             position: absolute;
             top: 3px;
@@ -113,43 +126,90 @@
             transform: translateX(-50%);
             width: 39px;
             height: 39px;
-            transition: fill 0.3s; /* Плавный переход цвета заполнения */
+            transition: fill 0.3s;
         }
+
         .chat-icon svg {
             width: 100%;
             height: 100%;
-            transition: fill 0.3s; /* Плавный переход цвета заполнения */
+            transition: fill 0.3s;
         }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #2c2f33;
+            height: 50px;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .profile-header svg {
+            fill: #fff;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .profile-header span {
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .profile-content {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .profile-content .avatar-circle {
+            margin-bottom: 10px;
+        }
+
+        .profile-content .balance-info {
+            font-size: 16px;
+            color: #fff;
+        }
+
         @media (max-width: 768px) {
             body {
                 background-image: url('https://iimg.su/s/12/4RpD9ISgulTY1a9cmTYyQP1i0yCSx65t5HphpsRX.jpg');
                 background-size: cover;
             }
+
             .button-bar {
                 height: 60px;
             }
-            .button-bar > div {
+
+            .button-bar>div {
                 font-size: 14px;
             }
+
             .avatar-circle {
-                width: 31px; /* Увеличен на 1 пиксель для мобильных устройств */
-                height: 31px; /* Увеличен на 1 пиксель для мобильных устройств */
-                top: 5px; /* Поднята на 1 пиксель */
+                width: 31px;
+                height: 31px;
+                top: 5px;
             }
+
             .emoji {
                 font-size: 35px;
                 left: calc(50% - 1px);
             }
+
             .chat-icon {
                 width: 36px;
                 height: 36px;
             }
+
+            .profile-header span {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="content"></div>
-
     <div class="button-bar">
         <div>
             <div class="emoji">🎮</div>
@@ -158,16 +218,50 @@
         <div>
             <div class="chat-icon">
                 <svg focusable="false" aria-hidden="true" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5 7L6 6H27L27.9912 7.13216L25.9912 22.1322L25 23H16.4142L11.7071 27.7071L10 27V23H6L5 22V7ZM14 14.5C14 15.3284 13.3284 16 12.5 16C11.6716 16 11 15.3284 11 14.5C11 13.6716 11.6716 13 12.5 13C13.3284 13 14 13.6716 14 14.5ZM19.5 16C20.3284 16 21 15.3284 21 14.5C21 13.6716 20.3284 13 19.5 13C18.6716 13 18 13.6716 18 14.5C18 15.3284 18.6716 16 19.5 16Z" fill="currentColor"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M5 7L6 6H27L27.9912 7.13216L25.9912 22.1322L25 23H16.4142L11.7071 27.7071L10 27V23H6L5 22V7ZM14 14.5C14 15.3284 13.3284 16 12.5 16C11.6716 16 11 15.3284 11 14.5C11 13.6716 11.6716 13 12.5 13C13.3284 13 14 13.6716 14 14.5ZM19.5 16C20.3284 16 21 15.3284 21 14.5C21 13.6716 20.3284 13 19.5 13C18.6716 13 18 13.6716 18 14.5C18 15.3284 18.6716 16 19.5 16Z"
+                        fill="currentColor"></path>
                 </svg>
             </div>
             <span>Чаты</span>
         </div>
-        <div>
+        <div id="profile-btn">
             <span>Профиль</span>
             <div class="avatar-circle">
                 <img src="" id="avatar-img" alt="Аватар">
             </div>
+        </div>
+    </div>
+
+    <div class="profile-header" id="profile-header" style="display: none;">
+        <div>
+            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium mui-style-vubbuv" focusable="false" aria-hidden="true"
+                viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M20 13H2V11H20V13Z" fill="currentColor"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M18 19H2V17H18V19Z" fill="currentColor"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M22 7H2V5H22V7Z" fill="currentColor"></path>
+            </svg>
+        </div>
+        <span>Профиль</span>
+        <div>
+            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium mui-style-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21.9993 11.9996L11.9993 3.99962V8.99962C11.9993 8.99962 8.14009 9.85896 5.9993 11.9996C2.4993 15.4994 2.9993 19.9996 2.9993 19.9996C2.9993 19.9996 5.11389 15.9617 8 14.9996C9.5 14.4996 11.9993 14.9996 11.9993 14.9996V19.9996L21.9993 11.9996Z" fill="currentColor"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9993 3.99962L12.624 3.21875L22.624 11.2188V12.7805L12.624 20.7805L10.9993 19.9996V15.8594C10.842 15.8408 10.6687 15.8233 10.4854 15.8092C9.6949 15.7483 8.86526 15.7653 8.31623 15.9483C7.16126 16.3333 6.0629 17.3868 5.20309 18.479C4.78724 19.0072 4.45417 19.5094 4.22537 19.8795C4.11133 20.064 4.02412 20.2141 3.9664 20.3162C3.93756 20.3673 3.91614 20.4062 3.90248 20.4314L3.88787 20.4585L3.88518 20.4635C3.88519 20.4635 3.88501 20.4639 3.88403 20.4633L2.00542 20.11L2.9993 19.9996C2.00542 20.11 2.00547 20.1105 2.00542 20.11L2.00521 20.1082L2.00496 20.1059L2.00435 20.1001L2.00268 20.0835C2.00139 20.0703 1.99977 20.0527 1.99797 20.031C1.99436 19.9875 1.99 19.9274 1.98603 19.852C1.9781 19.7012 1.97168 19.4886 1.976 19.2254C1.98461 18.6998 2.03609 17.9666 2.20622 17.1159C2.54639 15.4151 3.36747 13.2171 5.29222 11.2925C6.50744 10.0773 8.1587 9.26629 9.43758 8.76567C10.0446 8.52806 10.5895 8.35212 10.9993 8.23167V3.99962ZM12.2167 9.97571L12.2119 9.9768L12.1859 9.98288C12.1616 9.98863 12.1238 9.99775 12.0739 10.0103C11.974 10.0355 11.8258 10.0746 11.64 10.1282C11.2675 10.2356 10.7483 10.4004 10.1666 10.6281C8.98069 11.0923 7.63195 11.7812 6.70639 12.7067C5.5783 13.8348 4.90989 15.0791 4.51671 16.2178C5.364 15.3306 6.43877 14.4659 7.68377 14.0509C8.63474 13.7339 9.80475 13.7509 10.6389 13.8151C11.0751 13.8486 11.4595 13.8988 11.7352 13.9406C11.8735 13.9616 11.9855 13.9806 12.0644 13.9946C12.1038 14.0016 12.135 14.0074 12.1571 14.0116L12.1834 14.0167L12.1913 14.0182L12.1938 14.0187L12.1951 14.019C12.1953 14.019 12.1955 14.019 11.9993 14.9996L12.1951 14.019L12.9993 14.1799V17.919L20.3985 11.9996L12.9993 6.08024V9.80144L12.2167 9.97571Z" fill="currentColor"></path>
+            </svg>
+        </div>
+    </div>
+
+    <div class="profile-content">
+        <div class="avatar-circle">
+            <img src="" id="profile-avatar" alt="Аватар">
+        </div>
+        <div class="profile-info">
+            <div class="nickname" id="profile-nickname">Анна Смирнова</div>
+            <div class="balance-info" id="profile-balance">Баланс: 1500 руб</div>
+            <div class="registration-date" id="profile-registration-date">На сайте с: 01.01.2023</div>
         </div>
     </div>
 
@@ -183,12 +277,23 @@
                 leaf.style.animationDelay = `${Math.random() * 5}s`;
                 document.body.appendChild(leaf);
             }
+
             const urlParams = new URLSearchParams(window.location.search);
             const avatarUrl = urlParams.get('avatar_url');
             if (avatarUrl) {
                 document.getElementById('avatar-img').src = avatarUrl;
+                document.getElementById('profile-avatar').src = avatarUrl;
             }
+
+            const profileBtn = document.getElementById('profile-btn');
+            const profileHeader = document.getElementById('profile-header');
+            const profileContent = document.querySelector('.profile-content');
+            profileBtn.addEventListener('click', () => {
+                profileHeader.style.display = 'flex';
+                profileContent.style.display = 'block';
+            });
         });
     </script>
 </body>
+
 </html>
