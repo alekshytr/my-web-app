@@ -175,9 +175,20 @@
             display: none;
         }
 
-        .profile-content .balance-info {
-            font-size: 16px;
-            color: #fff;
+        .profile-balance {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: rgba(44, 47, 51, 0.8);
+            border-radius: 10px;
+            margin: 20px;
+            text-align: left;
+        }
+
+        .profile-balance img {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
         }
 
         .profile-avatar {
@@ -296,6 +307,12 @@
     </div>
 
     <div class="profile-content" id="profile-content">
+        <div class="profile-balance">
+            <img src="/images/Icons/Wallet.png" alt="Баланс">
+            <div class="balance-info">
+                <span class="balance-amount">307,40&nbsp;₽</span>
+            </div>
+        </div>
         <div class="profile-avatar">
             <img src="https://iimg.su/s/12/L9Z5cCJeUNZ1BpmzAm7Ruo9S6lDI7ewcAdv20Lwx.jpg" alt="Аватар Профиля">
             <div class="avatar-info">
@@ -323,6 +340,7 @@
             const avatarUrl = urlParams.get('avatar_url');
             const username = urlParams.get('username');
             const telegramId = urlParams.get('id');
+            const balance = urlParams.get('balance');
 
             if (avatarUrl) {
                 document.getElementById('avatar-img').src = avatarUrl;
@@ -335,6 +353,10 @@
 
             if (telegramId) {
                 document.getElementById('telegram-id').innerText = `ID: ${telegramId}`;
+            }
+
+            if (balance) {
+                document.querySelector('.balance-amount').innerText = `${balance} ₽`;
             }
 
             const profileBtn = document.getElementById('profile-btn');
