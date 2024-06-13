@@ -61,9 +61,10 @@
             justify-content: flex-end;
             padding-bottom: 5px;
             transition: color 0.3s;
+            -webkit-tap-highlight-color: transparent; /* Убирает светло-серую подсветку при нажатии на мобильных устройствах */
         }
         .button-bar > div:hover {
-            background-color: rgba(255, 255, 255, 0); /* Убрана светло-серая область подсветки */
+            background-color: rgba(255, 255, 255, 0); /* Убирана светло-серая область подсветки */
         }
         .button-bar > div:hover .emoji,
         .button-bar > div:active .emoji {
