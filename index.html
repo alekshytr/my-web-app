@@ -17,7 +17,7 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
             margin: 0;
             padding: 0;
             height: 100vh;
@@ -143,13 +143,24 @@
             height: 50px;
             padding: 0 10px;
             box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            border-bottom: 1px solid #fff;
+            z-index: 10;
+            display: none; /* Изначально скрыто */
         }
 
-        .profile-header svg {
-            fill: #fff;
+        .profile-header > div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
             width: 24px;
             height: 24px;
-            cursor: pointer;
+            transition: background-color 0.3s;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .profile-header span {
@@ -158,17 +169,32 @@
         }
 
         .profile-content {
-            margin-top: 60px;
+            margin-top: 50px; /* Отступ сверху*/
             text-align: center;
-        }
-
-        .profile-content .avatar-circle {
-            margin-bottom: 10px;
+            padding-bottom: 70px; /* Отступ снизу для панели кнопок*/
+            display: none; /* Изначально скрыто */
         }
 
         .profile-content .balance-info {
             font-size: 16px;
             color: #fff;
+        }
+
+        .profile-avatar {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: rgba(44, 47, 51, 0.8);
+            border-radius: 10px;
+            margin: 20px;
+            text-align: left;
+        }
+
+        .profile-avatar img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 15px;
         }
 
         @media (max-width: 768px) {
@@ -205,6 +231,21 @@
                 font-size: 16px;
             }
         }
+
+        .highlightable {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+        }
+
+        .profile-header > div:hover svg,
+        .profile-header > div:active svg {
+            color: #18a0fb; /* Цвет для текста */
+            fill: #18a0fb; /* Цвет для SVG */
+        }
     </style>
 </head>
 
@@ -218,9 +259,7 @@
         <div>
             <div class="chat-icon">
                 <svg focusable="false" aria-hidden="true" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M5 7L6 6H27L27.9912 7.13216L25.9912 22.1322L25 23H16.4142L11.7071 27.7071L10 27V23H6L5 22V7ZM14 14.5C14 15.3284 13.3284 16 12.5 16C11.6716 16 11 15.3284 11 14.5C11 13.6716 11.6716 13 12.5 13C13.3284 13 14 13.6716 14 14.5ZM19.5 16C20.3284 16 21 15.3284 21 14.5C21 13.6716 20.3284 13 19.5 13C18.6716 13 18 13.6716 18 14.5C18 15.3284 18.6716 16 19.5 16Z"
-                        fill="currentColor"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5 7L6 6H27L27.9912 7.13216L25.9912 22.1322L25 23H16.4142L11.7071 27.7071L10 27V23H6L5 22V7ZM14 14.5C14 15.3284 13.3284 16 12.5 16C11.6716 16 11 15.3284 11 14.5C11 13.6716 11.6716 13 12.5 13C13.3284 13 14 13.6716 14 14.5ZM19.5 16C20.3284 16 21 15.3284 21 14.5C21 13.6716 20.3284 13 19.5 13C18.6716 13 18 13.6716 18 14.5C18 15.3284 18.6716 16 19.5 16Z" fill="currentColor"></path>
                 </svg>
             </div>
             <span>Чаты</span>
@@ -233,36 +272,32 @@
         </div>
     </div>
 
-    <div class="profile-header" id="profile-header" style="display: none;">
-        <div>
-            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium mui-style-vubbuv" focusable="false" aria-hidden="true"
-                viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M20 13H2V11H20V13Z" fill="currentColor"></path>
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M18 19H2V17H18V19Z" fill="currentColor"></path>
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M22 7H2V5H22V7Z" fill="currentColor"></path>
+     <div class="profile-header" id="profile-header">
+        <div id="back-btn" class="highlightable">
+            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium mui-style-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M20 13H2V11H20V13Z" fill="currentColor"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M18 19H2V17H18V19Z" fill="currentColor"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M22 7H2V5H22V7Z" fill="currentColor"></path>
             </svg>
         </div>
         <span>Профиль</span>
-        <div>
+        <div id="menu-btn" class="highlightable">
             <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium mui-style-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21.9993 11.9996L11.9993 3.99962V8.99962C11.9993 8.99962 8.14009 9.85896 5.9993 11.9996C2.4993 15.4994 2.9993 19.9996 2.9993 19.9996C2.9993 19.9996 5.11389 15.9617 8 14.9996C9.5 14.4996 11.9993 14.9996 11.9993 14.9996V19.9996L21.9993 11.9996Z" fill="currentColor"></path>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9993 3.99962L12.624 3.21875L22.624 11.2188V12.7805L12.624 20.7805L10.9993 19.9996V15.8594C10.842 15.8408 10.6687 15.8233 10.4854 15.8092C9.6949 15.7483 8.86526 15.7653 8.31623 15.9483C7.16126 16.3333 6.0629 17.3868 5.20309 18.479C4.78724 19.0072 4.45417 19.5094 4.22537 19.8795C4.11133 20.064 4.02412 20.2141 3.9664 20.3162C3.93756 20.3673 3.91614 20.4062 3.90248 20.4314L3.88787 20.4585L3.88518 20.4635C3.88519 20.4635 3.88501 20.4639 3.88403 20.4633L2.00542 20.11L2.9993 19.9996C2.00542 20.11 2.00547 20.1105 2.00542 20.11L2.00521 20.1082L2.00496 20.1059L2.00435 20.1001L2.00268 20.0835C2.00139 20.0703 1.99977 20.0527 1.99797 20.031C1.99436 19.9875 1.99 19.9274 1.98603 19.852C1.9781 19.7012 1.97168 19.4886 1.976 19.2254C1.98461 18.6998 2.03609 17.9666 2.20622 17.1159C2.54639 15.4151 3.36747 13.2171 5.29222 11.2925C6.50744 10.0773 8.1587 9.26629 9.43758 8.76567C10.0446 8.52806 10.5895 8.35212 10.9993 8.23167V3.99962ZM12.2167 9.97571L12.2119 9.9768L12.1859 9.98288C12.1616 9.98863 12.1238 9.99775 12.0739 10.0103C11.974 10.0355 11.8258 10.0746 11.64 10.1282C11.2675 10.2356 10.7483 10.4004 10.1666 10.6281C8.98069 11.0923 7.63195 11.7812 6.70639 12.7067C5.5783 13.8348 4.90989 15.0791 4.51671 16.2178C5.364 15.3306 6.43877 14.4659 7.68377 14.0509C8.63474 13.7339 9.80475 13.7509 10.6389 13.8151C11.0751 13.8486 11.4595 13.8988 11.7352 13.9406C11.8735 13.9616 11.9855 13.9806 12.0644 13.9946C12.1038 14.0016 12.135 14.0074 12.1571 14.0116L12.1834 14.0167L12.1913 14.0182L12.1938 14.0187L12.1951 14.019C12.1953 14.019 12.1955 14.019 11.9993 14.9996L12.1951 14.019L12.9993 14.1799V17.919L20.3985 11.9996L12.9993 6.08024V9.80144L12.2167 9.97571Z" fill="currentColor"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M21.9993 11.9996L11.9993 3.99962V8.99962C11.9993 8.99962 8.14009 9.85896 5.9993 11.9996C2.4993 15.4994 2.9993 19.9996 2.9993 19.9996C2.9993 19.9996 5.11389 15.9617 8 14.9996C9.5 14.4996 11.9993 14.9996 11.9993 14.9996V19.9996L21.9993 11.9996Z" fill="currentColor"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9993 3.99962L12.624 3.21875L22.624 11.2188V12.7805L12.624 20.7805L10.9993 19.9996V15.8594C10.842 15.8408 10.6687 15.8233 10.4854 15.8092C9.6949 15.7483 8.86526 15.7653 8.31623 15.9483C7.16126 16.3333 6.0629 17.3868 5.20309 18.479C4.78724 19.0072 4.45417 19.5094 4.22537 19.8795C4.11133 20.064 4.02412 20.2141 3.9664 20.3162C3.93756 20.3673 3.91614 20.4062 3.90248 20.4314L3.88518 20.4635" fill="currentColor"></path>
             </svg>
         </div>
     </div>
 
-    <div class="profile-content">
-        <div class="avatar-circle">
-            <img src="" id="profile-avatar" alt="Аватар">
+    <div class="profile-content" id="profile-content">
+        <div class="profile-avatar">
+            <img src="https://iimg.su/s/12/L9Z5cCJeUNZ1BpmzAm7Ruo9S6lDI7ewcAdv20Lwx.jpg" alt="Аватар Профиля">
+            <div class="avatar-info">
+                <h2>Имя пользователя</h2>
+                <p>Дополнительная информация</p>
+            </div>
         </div>
-        <div class="profile-info">
-            <div class="nickname" id="profile-nickname">Анна Смирнова</div>
-            <div class="balance-info" id="profile-balance">Баланс: 1500 руб</div>
-            <div class="registration-date" id="profile-registration-date">На сайте с: 01.01.2023</div>
-        </div>
+        <!-- Остальной контент профиля -->
     </div>
 
     <script>
@@ -282,15 +317,41 @@
             const avatarUrl = urlParams.get('avatar_url');
             if (avatarUrl) {
                 document.getElementById('avatar-img').src = avatarUrl;
-                document.getElementById('profile-avatar').src = avatarUrl;
+                document.querySelector('.profile-avatar img').src = avatarUrl; // Обновление аватара в профиле
             }
 
             const profileBtn = document.getElementById('profile-btn');
             const profileHeader = document.getElementById('profile-header');
-            const profileContent = document.querySelector('.profile-content');
+            const profileContent = document.getElementById('profile-content');
             profileBtn.addEventListener('click', () => {
                 profileHeader.style.display = 'flex';
                 profileContent.style.display = 'block';
+            });
+
+            const backBtn = document.getElementById('back-btn');
+            const menuBtn = document.getElementById('menu-btn');
+
+            [backBtn, menuBtn].forEach(btn => {
+                btn.addEventListener('mouseover', () => {
+                    btn.querySelector('svg').style.fill = '#18a0fb';
+                });
+
+                btn.addEventListener('mouseout', () => {
+                    btn.querySelector('svg').style.fill = 'currentColor';
+                });
+
+                btn.addEventListener('mousedown', () => {
+                    btn.querySelector('svg').style.fill = '#18a0fb';
+                });
+
+                btn.addEventListener('mouseup', () => {
+                    btn.querySelector('svg').style.fill = 'currentColor';
+                });
+            });
+
+            backBtn.addEventListener('click', () => {
+                profileHeader.style.display = 'none';
+                profileContent.style.display = 'none';
             });
         });
     </script>
