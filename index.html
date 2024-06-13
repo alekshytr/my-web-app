@@ -149,7 +149,7 @@
             right: 0;
             border-bottom: 1px solid #fff;
             z-index: 10;
-            display: none; /* Изначально скрыто */
+            display: none;
         }
 
         .profile-header > div {
@@ -169,10 +169,10 @@
         }
 
         .profile-content {
-            margin-top: 50px; /* Отступ сверху*/
+            margin-top: 50px;
             text-align: center;
-            padding-bottom: 70px; /* Отступ снизу для панели кнопок*/
-            display: none; /* Изначально скрыто */
+            padding-bottom: 70px;
+            display: none;
         }
 
         .profile-content .balance-info {
@@ -249,8 +249,8 @@
 
         .profile-header > div:hover svg,
         .profile-header > div:active svg {
-            color: #18a0fb; /* Цвет для текста */
-            fill: #18a0fb; /* Цвет для SVG */
+            color: #18a0fb;
+            fill: #18a0fb;
         }
     </style>
 </head>
@@ -278,7 +278,7 @@
         </div>
     </div>
 
-    <div class="profile-header" id="profile-header">
+        <div class="profile-header" id="profile-header">
         <div id="back-btn" class="highlightable">
             <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium" focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M20 13H2V11H20V13Z" fill="currentColor"></path>
@@ -374,7 +374,22 @@
             document.getElementById('telegram-id').addEventListener('click', () => {
                 navigator.clipboard.writeText(telegramId)
                     .then(() => {
-                        alert('ID скопирован!');
+                        const notification = document.createElement('div');
+                        notification.innerText = 'ID скопирован!';
+                        notification.style.position = 'fixed';
+                        notification.style.bottom = '20px';
+                        notification.style.left = '50%';
+                        notification.style.transform = 'translateX(-50%)';
+                        notification.style.padding = '10px 20px';
+                        notification.style.backgroundColor = '#18a0fb';
+                        notification.style.color = '#fff';
+                        notification.style.borderRadius = '5px';
+                        notification.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                        notification.style.zIndex = '1000';
+                        document.body.appendChild(notification);
+                        setTimeout(() => {
+                            document.body.removeChild(notification);
+                        }, 2000);
                     })
                     .catch(err => {
                         console.error('Ошибка при копировании ID:', err);
