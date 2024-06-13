@@ -197,6 +197,12 @@
             margin-right: 15px;
         }
 
+        .copyable {
+            cursor: pointer;
+            color: #18a0fb;
+            user-select: text;
+        }
+
         @media (max-width: 768px) {
             body {
                 background-image: url('https://iimg.su/s/12/4RpD9ISgulTY1a9cmTYyQP1i0yCSx65t5HphpsRX.jpg');
@@ -272,9 +278,9 @@
         </div>
     </div>
 
-     <div class="profile-header" id="profile-header">
+        <div class="profile-header" id="profile-header">
         <div id="back-btn" class="highlightable">
-            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium mui-style-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium" focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M20 13H2V11H20V13Z" fill="currentColor"></path>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M18 19H2V17H18V19Z" fill="currentColor"></path>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M22 7H2V5H22V7Z" fill="currentColor"></path>
@@ -282,7 +288,7 @@
         </div>
         <span>Профиль</span>
         <div id="menu-btn" class="highlightable">
-            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium mui-style-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium" focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M21.9993 11.9996L11.9993 3.99962V8.99962C11.9993 8.99962 8.14009 9.85896 5.9993 11.9996C2.4993 15.4994 2.9993 19.9996 2.9993 19.9996C2.9993 19.9996 5.11389 15.9617 8 14.9996C9.5 14.4996 11.9993 14.9996 11.9993 14.9996V19.9996L21.9993 11.9996Z" fill="currentColor"></path>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9993 3.99962L12.624 3.21875L22.624 11.2188V12.7805L12.624 20.7805L10.9993 19.9996V15.8594C10.842 15.8408 10.6687 15.8233 10.4854 15.8092C9.6949 15.7483 8.86526 15.7653 8.31623 15.9483C7.16126 16.3333 6.0629 17.3868 5.20309 18.479C4.78724 19.0072 4.45417 19.5094 4.22537 19.8795C4.11133 20.064 4.02412 20.2141 3.9664 20.3162C3.93756 20.3673 3.91614 20.4062 3.90248 20.4314L3.88518 20.4635" fill="currentColor"></path>
             </svg>
@@ -293,8 +299,8 @@
         <div class="profile-avatar">
             <img src="https://iimg.su/s/12/L9Z5cCJeUNZ1BpmzAm7Ruo9S6lDI7ewcAdv20Lwx.jpg" alt="Аватар Профиля">
             <div class="avatar-info">
-                <h2>Имя пользователя</h2>
-                <p>Дополнительная информация</p>
+                <h2 id="username">Имя пользователя</h2>
+                <p class="copyable" id="telegram-id">ID: 131321312</p>
             </div>
         </div>
         <!-- Остальной контент профиля -->
@@ -315,9 +321,20 @@
 
             const urlParams = new URLSearchParams(window.location.search);
             const avatarUrl = urlParams.get('avatar_url');
+            const username = urlParams.get('username');
+            const telegramId = urlParams.get('id');
+
             if (avatarUrl) {
                 document.getElementById('avatar-img').src = avatarUrl;
                 document.querySelector('.profile-avatar img').src = avatarUrl; // Обновление аватара в профиле
+            }
+
+            if (username) {
+                document.getElementById('username').innerText = username;
+            }
+
+            if (telegramId) {
+                document.getElementById('telegram-id').innerText = `ID: ${telegramId}`;
             }
 
             const profileBtn = document.getElementById('profile-btn');
@@ -352,6 +369,16 @@
             backBtn.addEventListener('click', () => {
                 profileHeader.style.display = 'none';
                 profileContent.style.display = 'none';
+            });
+
+            document.getElementById('telegram-id').addEventListener('click', () => {
+                navigator.clipboard.writeText(telegramId)
+                    .then(() => {
+                        alert('ID скопирован!');
+                    })
+                    .catch(err => {
+                        console.error('Ошибка при копировании ID:', err);
+                    });
             });
         });
     </script>
