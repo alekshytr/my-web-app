@@ -3,18 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALEX PAY</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>ALEX PAY - Магазин</title>
+    <style>
+        body {
+            background-image: url('https://iimg.su/s/14/f4GfzEeaTTVyWYUrgc10rWPTwZhBVPoHUFT99cEK.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            text-align: center;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        .leaf {
+            position: fixed;
+            top: -10%;
+            width: 25px;
+            height: auto;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+
+        .button-bar {
+            background-color: #2c2f33;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            box-sizing: border-box;
+            margin: 0;
+            height: 70px;
+        }
+
+        .button-bar > div {
+            width: 33.33%;
+            background: #2c2f33;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            border-top: 1px solid #fff;
+            box-sizing: border-box;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 5px;
+            transition: color 0.3s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .button-bar > div:hover {
+            background-color: rgba(48, 48, 48, 0.7);
+        }
+
+        .button-bar > div:active {
+            background-color: rgba(48, 48, 48, 0.5);
+        }
+
+        .button-bar > div:hover .emoji,
+        .button-bar > div:active .emoji {
+            color: #18a0fb;
+        }
+
+        .button-bar > div:hover .chat-icon,
+        .button-bar > div:active .chat-icon,
+        .button-bar > div:hover .chat-icon svg,
+        .button-bar > div:active .chat-icon svg {
+            color: #18a0fb;
+            fill: #18a0fb;
+        }
+
+        .button-bar > div:hover span,
+        .button-bar > div:active span {
+            color: #18a0fb;
+        }
+
+        .avatar-circle {
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 34px;
+            height: 34px;
+            background-color: #fff;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .emoji {
+            position: absolute;
+            top: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 38px;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+
+        .chat-icon {
+            position: absolute;
+            top: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 39px;
+            height: 39px;
+            transition: fill 0.3s;
+        }
+
+        .chat-icon svg {
+            width: 100%;
+            height: 100%;
+            transition: fill 0.3s;
+        }
+    </style>
 </head>
 <body>
     <div class="content"></div>
-
     <div class="button-bar">
-        <div onclick="location.href='shop.html';">
+        <div onclick="window.location.href='index.html'">
             <div class="emoji">🎮</div>
             <span>Магазин</span>
         </div>
-        <div onclick="location.href='#';">
+        <div onclick="window.location.href='chat.html'">
             <div class="chat-icon">
                 <svg focusable="false" aria-hidden="true" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M5 7L6 6H27L27.9912 7.13216L25.9912 22.1322L25 23H16.4142L11.7071 27.7071L10 27V23H6L5 22V7ZM14 14.5C14 15.3284 13.3284 16 12.5 16C11.6716 16 11 15.3284 11 14.5C11 13.6716 11.6716 13 12.5 13C13.3284 13 14 13.6716 14 14.5ZM19.5 16C20.3284 16 21 15.3284 21 14.5C21 13.6716 20.3284 13 19.5 13C18.6716 13 18 13.6716 18 14.5C18 15.3284 18.6716 16 19.5 16Z" fill="currentColor"></path>
@@ -22,7 +154,7 @@
             </div>
             <span>Чаты</span>
         </div>
-        <div onclick="location.href='profile.html'">
+        <div onclick="window.location.href='profile.html'">
             <span>Профиль</span>
             <div class="avatar-circle">
                 <img src="" id="avatar-img" alt="Аватар">
@@ -30,13 +162,20 @@
         </div>
     </div>
 
-    <div class="popup-modal" id="popup-modal">
-        <div class="close-btn" id="close-btn">✖</div>
-        <a href="#" class="modal-button">Поддержка</a>
-        <a href="#" class="modal-button">Новости</a>
-        <a href="#" class="modal-button">Чат</a>
-    </div>
-
-    <script src="scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Добавление падающих листьев
+            const numLeaves = 10;
+            for (let i = 0; i < numLeaves; i++) {
+                const leaf = document.createElement('img');
+                leaf.src = 'https://iimg.su/s/12/exmO4uSLNzES14k5cvXwo184DncYYsB22W34Zu5I.png';
+                leaf.className = 'leaf';
+                leaf.style.left = `${Math.random() * 100}vw`;
+                leaf.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                leaf.style.animationDelay = `${Math.random() * 5}s`;
+                document.body.appendChild(leaf);
+            }
+        });
+    </script>
 </body>
 </html>
