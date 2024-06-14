@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Профиль - ALEX PAY</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <div class="profile-header" id="profile-header">
         <div id="menu-btn" class="highlightable">
@@ -44,7 +42,27 @@
         </div>
     </div>
 
+    <div class="button-bar">
+        <div onclick="location.href='shop.html';">
+            <div class="emoji">🎮</div>
+            <span>Магазин</span>
+        </div>
+        <div onclick="location.href='#';">
+            <div class="chat-icon">
+                <svg focusable="false" aria-hidden="true" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5 7L6 6H27L27.9912 7.13216L25.9912 22.1322L25 23H16.4142L11.7071 27.7071L10 27V23H6L5 22V7ZM14 14.5C14 15.3284 13.3284 16 12.5 16C11.6716 16 11 15.3284 11 14.5C11 13.6716 11.6716 13 12.5 13C13.3284 13 14 13.6716 14 14.5ZM19.5 16C20.3284 16 21 15.3284 21 14.5C21 13.6716 20.3284 13 19.5 13C18.6716 13 18 13.6716 18 14.5C18 15.3284 18.6716 16 19.5 16Z" fill="currentColor"></path>
+                </svg>
+            </div>
+            <span>Чаты</span>
+        </div>
+        <div onclick="location.href='profile.html'">
+            <span>Профиль</span>
+            <div class="avatar-circle">
+                <img src="" id="avatar-img" alt="Аватар">
+            </div>
+        </div>
+    </div>
+
     <script src="scripts.js"></script>
 </body>
-
 </html>
