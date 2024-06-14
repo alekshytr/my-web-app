@@ -20,36 +20,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Установка параметров профиля
     if (avatarUrl) {
-        document.getElementById('avatar-img').src = avatarUrl;
-        if (document.querySelector('.profile-avatar img')) {
-            document.querySelector('.profile-avatar img').src = avatarUrl;
-        }
+        const avatarImg = document.getElementById('avatar-img');
+        if (avatarImg) avatarImg.src = avatarUrl;
+
+        const profileAvatarImg = document.querySelector('.profile-avatar img');
+        if (profileAvatarImg) profileAvatarImg.src = avatarUrl;
     }
 
     if (username) {
-        if (document.getElementById('username')) {
-            document.getElementById('username').innerText = username;
-        }
+        const usernameField = document.getElementById('username');
+        if (usernameField) usernameField.innerText = username;
     }
 
     if (telegramId) {
-        if (document.getElementById('telegram-id')) {
-            document.getElementById('telegram-id').innerText = `ID: ${telegramId}`;
-        }
+        const telegramIdField = document.getElementById('telegram-id');
+        if (telegramIdField) telegramIdField.innerText = `ID: ${telegramId}`;
     }
 
-    if (document.getElementById('balance-amount')) {
-        document.getElementById('balance-amount').innerText = `${balance} ₽`;
-    }
+    const balanceAmountField = document.getElementById('balance-amount');
+    if (balanceAmountField) balanceAmountField.innerText = `${balance} ₽`;
 
     // Обработка клика по кнопке профиля
     const profileBtn = document.getElementById('profile-btn');
     if (profileBtn) {
-        const profileHeader = document.getElementById('profile-header');
-        const profileContent = document.getElementById('profile-content');
         profileBtn.addEventListener('click', () => {
-            profileHeader.style.display = 'flex';
-            profileContent.style.display = 'block';
+            window.location.href = 'profile.html';
         });
     }
 
@@ -101,6 +96,4 @@ document.addEventListener('DOMContentLoaded', () => {
             button.style.backgroundColor = 'rgba(44, 47, 51, 0.8)';
         });
     });
-
-    // Убрана обработка клика по кнопке баланса
 });
