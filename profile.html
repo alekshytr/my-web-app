@@ -82,6 +82,7 @@
 
         .profile-content {
             margin-top: 60px;
+            padding-top: 50px;
             text-align: center;
         }
 
@@ -97,12 +98,14 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .profile-balance:hover {
+        .profile-balance:hover,
+        .profile-balance:active {
             background-color: rgba(48, 48, 48, 0.7);
         }
 
-        .profile-balance:active {
-            background-color: rgba(48, 48, 48, 0.5);
+        .profile-balance:hover span,
+        .profile-balance:active span {
+            color: #18a0fb;
         }
 
         .profile-balance img {
@@ -115,21 +118,9 @@
             transition: fill 0.3s;
         }
 
-        .profile-balance:hover svg path {
-            fill: #18a0fb;
-        }
-
+        .profile-balance:hover svg path,
         .profile-balance:active svg path {
             fill: #18a0fb;
-        }
-
-        .profile-balance span {
-            transition: color 0.3s;
-        }
-
-        .profile-balance:hover span,
-        .profile-balance:active span {
-            color: #18a0fb;
         }
 
         .profile-avatar {
@@ -171,14 +162,14 @@
             text-align: center;
             color: white;
             text-decoration: none;
-            transition: color 0.3s, border-color 0.3s;
+            transition: background-color 0.3s, color 0.3s;
             flex: 1;
         }
 
         .profile-buttons a:hover,
         .profile-buttons a:active {
+            background-color: rgba(48, 48, 48, 0.7);
             color: #18a0fb;
-            border-color: #18a0fb;
         }
 
         .highlightable {
@@ -188,6 +179,12 @@
             justify-content: center;
             width: 24px;
             height: 24px;
+        }
+
+        .profile-header > div:hover svg,
+        .profile-header > div:active svg {
+            color: #18a0fb;
+            fill: #18a0fb;
         }
 
         .popup-modal {
@@ -235,15 +232,15 @@
             background-color: rgba(44, 47, 51, 0.8);
             color: white;
             text-decoration: none;
-            transition: color 0.3s, border-color 0.3s;
+            transition: background-color 0.3s, color 0.3s;
             width: 80%;
             text-align: center;
         }
 
         .popup-modal .modal-button:hover,
         .popup-modal .modal-button:active {
+            background-color: rgba(48, 48, 48, 0.7);
             color: #18a0fb;
-            border-color: #18a0fb;
         }
 
         .arrow-icon {
@@ -490,23 +487,19 @@
             const buttons = document.querySelectorAll('.profile-buttons a');
             buttons.forEach(button => {
                 button.addEventListener('mouseover', () => {
-                    button.style.borderColor = '#18a0fb';
-                    button.style.color = '#18a0fb';
+                    button.style.backgroundColor = 'rgba(48, 48, 48, 0.7)';
                 });
 
                 button.addEventListener('mousedown', () => {
-                    button.style.borderColor = '#18a0fb';
-                    button.style.color = '#18a0fb';
+                    button.style.backgroundColor = 'rgba(48, 48, 48, 0.5)';
                 });
 
                 button.addEventListener('mouseup', () => {
-                    button.style.borderColor = '#18a0fb';
-                    button.style.color = '#18a0fb';
+                    button.style.backgroundColor = 'rgba(48, 48, 48, 0.7)';
                 });
 
                 button.addEventListener('mouseout', () => {
-                    button.style.borderColor = 'white';
-                    button.style.color = 'white';
+                    button.style.backgroundColor = 'rgba(44, 47, 51, 0.8)';
                 });
             });
 
@@ -514,46 +507,38 @@
             const modalButtons = document.querySelectorAll('.modal-button');
             modalButtons.forEach(button => {
                 button.addEventListener('mouseover', () => {
-                    button.style.borderColor = '#18a0fb';
-                    button.style.color = '#18a0fb';
+                    button.style.backgroundColor = 'rgba(48, 48, 48, 0.7)';
                 });
 
                 button.addEventListener('mousedown', () => {
-                    button.style.borderColor = '#18a0fb';
-                    button.style.color = '#18a0fb';
+                    button.style.backgroundColor = 'rgba(48, 48, 48, 0.5)';
                 });
 
                 button.addEventListener('mouseup', () => {
-                    button.style.borderColor = '#18a0fb';
-                    button.style.color = '#18a0fb';
+                    button.style.backgroundColor = 'rgba(48, 48, 48, 0.7)';
                 });
 
                 button.addEventListener('mouseout', () => {
-                    button.style.borderColor = 'white';
-                    button.style.color = 'white';
+                    button.style.backgroundColor = 'rgba(44, 47, 51, 0.8)';
                 });
             });
 
             // Наведение и нажатие на кнопку профиля
             const profileBalance = document.querySelector('.profile-balance');
             profileBalance.addEventListener('mouseover', () => {
-                profileBalance.style.borderColor = '#18a0fb';
-                profileBalance.style.color = '#18a0fb';
+                profileBalance.style.backgroundColor = 'rgba(48, 48, 48, 0.7)';
             });
 
             profileBalance.addEventListener('mousedown', () => {
-                profileBalance.style.borderColor = '#18a0fb';
-                profileBalance.style.color = '#18a0fb';
+                profileBalance.style.backgroundColor = 'rgba(48, 48, 48, 0.5)';
             });
 
             profileBalance.addEventListener('mouseup', () => {
-                profileBalance.style.borderColor = '#18a0fb';
-                profileBalance.style.color = '#18a0fb';
+                profileBalance.style.backgroundColor = 'rgba(48, 48, 48, 0.7)';
             });
 
             profileBalance.addEventListener('mouseout', () => {
-                profileBalance.style.borderColor = 'white';
-                profileBalance.style.color = 'white';
+                profileBalance.style.backgroundColor = 'rgba(44, 47, 51, 0.8)';
             });
         });
     </script>
