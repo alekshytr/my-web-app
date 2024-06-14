@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль - ALEX PAY</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="profile-header" id="profile-header">
+        <div id="menu-btn" class="highlightable">
+            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium" focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M20 13H2V11H20V13Z" fill="currentColor"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M18 19H2V17H18V19Z" fill="currentColor"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M22 7H2V5H22V7Z" fill="currentColor"></path>
+            </svg>
+        </div>
+        <span>Профиль</span>
+    </div>
+
+    <div class="profile-content" id="profile-content">
+        <div class="profile-balance">
+            <img src="https://playerok.com/images/Icons/Wallet.png" alt="Баланс">
+            <div class="balance-info">
+                <span>Баланс:</span> <span class="balance-amount" id="balance-amount"></span>
+            </div>
+            <svg class="arrow-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5859 12.0001L8.29297 6.70718L9.70718 5.29297L16.4143 12.0001L9.70718 18.7072L8.29297 17.293L13.5859 12.0001Z" fill="currentColor"></path>
+            </svg>
+        </div>
+        <div class="profile-avatar">
+            <img src="https://iimg.su/s/12/L9Z5cCJeUNZ1BpmzAm7Ruo9S6lDI7ewcAdv20Lwx.jpg" alt="Аватар Профиля">
+            <div class="avatar-info">
+                <h2 id="username">Никнейм</h2>
+                <p class="copyable" id="telegram-id">ID: 1234567890</p>
+            </div>
+        </div>
+
+        <div class="profile-buttons">
+            <a href="#" id="shopping-button">Покупки</a>
+            <a href="#" id="replenish-button">Пополнения</a>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
