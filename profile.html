@@ -3,10 +3,366 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Профиль - ALEX PAY</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>ALEX PAY - Профиль</title>
+    <style>
+        body {
+            background-image: url('https://iimg.su/s/14/f4GfzEeaTTVyWYUrgc10rWPTwZhBVPoHUFT99cEK.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            text-align: center;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        .leaf {
+            position: fixed;
+            top: -10%;
+            width: 25px;
+            height: auto;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #2c2f33;
+            height: 50px;
+            padding: 0 10px;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            border-bottom: 1px solid #fff;
+            z-index: 10;
+        }
+
+        .profile-header > div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            transition: background-color 0.3s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .profile-header span {
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .profile-content {
+            margin-top: 50px;
+            text-align: center;
+            padding-bottom: 70px;
+        }
+
+        .profile-balance {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: rgba(44, 47, 51, 0.8);
+            border-radius: 10px;
+            margin: 20px;
+            text-align: left;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .profile-balance:hover {
+            background-color: rgba(48, 48, 48, 0.7);
+        }
+
+        .profile-balance:active {
+            background-color: rgba(48, 48, 48, 0.5);
+        }
+
+        .profile-balance img {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+        }
+
+        .profile-balance svg path {
+            transition: fill 0.3s;
+        }
+
+        .profile-balance:hover svg path {
+            fill: rgba(24, 160, 251, 1);
+        }
+
+        .profile-balance:active svg path {
+            fill: rgba(24, 160, 251, 0.7);
+        }
+
+        .profile-balance span {
+            transition: color 0.3s;
+        }
+
+        .profile-balance:hover span {
+            color: rgba(24, 160, 251, 1);
+        }
+
+        .profile-balance:active span {
+            color: rgba(24, 160, 251, 0.7);
+        }
+
+        .profile-avatar {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: rgba(44, 47, 51, 0.8);
+            border-radius: 10px;
+            margin: 20px;
+            text-align: left;
+        }
+
+        .profile-avatar img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .copyable {
+            cursor: pointer;
+            color: #18a0fb;
+            user-select: text;
+        }
+
+        .profile-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .profile-buttons a {
+            display: block;
+            margin: 10px 12px;
+            padding: 15px 0;
+            border: 1px solid white;
+            border-radius: 25px;
+            background: rgba(44, 47, 51, 0.8);
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s, border-color 0.3s;
+            flex: 1;
+        }
+
+        .profile-buttons a:hover {
+            color: rgba(24, 160, 251, 1);
+            border-color: rgba(24, 160, 251, 1);
+        }
+
+        .profile-buttons a:active {
+            color: rgba(24, 160, 251, 0.7);
+            border-color: rgba(24, 160, 251, 0.7);
+        }
+
+        .highlightable {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+        }
+
+        .profile-header > div:hover svg,
+        .profile-header > div:active svg {
+            color: #18a0fb;
+            fill: #18a0fb;
+        }
+
+        .popup-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 75%;
+            height: 75%;
+            background-color: #2c2f33;
+            border-radius: 10px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 20;
+            padding: 10px;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .popup-modal.show {
+            display: flex;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .popup-modal .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .popup-modal .modal-button {
+            display: block;
+            margin: 10px;
+            padding: 15px;
+            border: 1px solid white;
+            border-radius: 10px;
+            background-color: rgba(44, 47, 51, 0.8);
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s, border-color 0.3s;
+            width: 80%;
+            text-align: center;
+        }
+
+        .popup-modal .modal-button:hover {
+            color: rgba(24, 160, 251, 1);
+            border-color: rgba(24, 160, 251, 1);
+        }
+
+        .popup-modal .modal-button:active {
+            color: rgba(24, 160, 251, 0.7);
+            border-color: rgba(24, 160, 251, 0.7);
+        }
+
+        .arrow-icon {
+            width: 32px;
+            height: 32px;
+            margin-left: auto;
+        }
+
+        .button-bar {
+            background-color: #2c2f33;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            box-sizing: border-box;
+            margin: 0;
+            height: 70px;
+        }
+
+        .button-bar > div {
+            width: 33.33%;
+            background: #2c2f33;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            border-top: 1px solid #fff;
+            box-sizing: border-box;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 5px;
+            transition: color 0.3s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .button-bar > div:hover {
+            background-color: rgba(48, 48, 48, 0.7);
+        }
+
+        .button-bar > div:active {
+            background-color: rgba(48, 48, 48, 0.5);
+        }
+
+        .button-bar > div:hover .emoji,
+        .button-bar > div:active .emoji {
+            color: #18a0fb;
+        }
+
+        .button-bar > div:hover .chat-icon,
+        .button-bar > div:active .chat-icon,
+        .button-bar > div:hover .chat-icon svg,
+        .button-bar > div:active .chat-icon svg {
+            color: #18a0fb;
+            fill: #18a0fb;
+        }
+
+        .button-bar > div:hover span,
+        .button-bar > div:active span {
+            color: #18a0fb;
+        }
+
+        .avatar-circle {
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 34px;
+            height: 34px;
+            background-color: #fff;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .emoji {
+            position: absolute;
+            top: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 38px;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+
+        .chat-icon {
+            position: absolute;
+            top: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 39px;
+            height: 39px;
+            transition: fill 0.3s;
+        }
+
+        .chat-icon svg {
+            width: 100%;
+            height: 100%;
+            transition: fill 0.3s;
+        }
+    </style>
 </head>
 <body>
+    <div class="content"></div>
     <div class="profile-header" id="profile-header">
         <div id="menu-btn" class="highlightable">
             <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium" focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -16,13 +372,20 @@
             </svg>
         </div>
         <span>Профиль</span>
+        <div id="arrow-btn" class="highlightable">
+            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium" focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M21.9993 11.9996L11.9993 3.99962V8.99962C11.9993 8.99962 8.14009 9.85896 5.9993 11.9996C2.4993 15.4994 2.9993 19.9996 2.9993 19.9996C2.9993 19.9996 5.11389 15.9617 8 14.9996C9.5 14.4996 11.9993 14.9996 11.9993 14.9996V19.9996L21.9993 11.9996Z" fill="currentColor"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9993 3.99962L12.624 3.21875L22.624 11.2188V12.7805L12.624 20.7805L10.9993 19.9996V15.8594C10.842 15.8408 10.6687 15.8233 10.4854 15.8092C9.6949 15.7483 8.86526 15.7653 8.31623 15.9483C7.16126 16.3333 6.0629 17.3868 5.20309 18.479C4.78724 19.0072 4.45417 19.5094 4.22537 19.8795C4.11133 20.064 4.02412 20.2141 3.9664 20.3162C3.93756 20.3673 3.91614 20.4062 3.90248 20.4314L3.88518 20.4635" fill="currentColor"></path>
+            </svg>
+        </div>
     </div>
 
     <div class="profile-content" id="profile-content">
         <div class="profile-balance">
             <img src="https://playerok.com/images/Icons/Wallet.png" alt="Баланс">
             <div class="balance-info">
-                <span>Баланс:</span> <span class="balance-amount" id="balance-amount"></span>
+                <span>Баланс:</span>
+                <span class="balance-amount" id="balance-amount"></span>
             </div>
             <svg class="arrow-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5859 12.0001L8.29297 6.70718L9.70718 5.29297L16.4143 12.0001L9.70718 18.7072L8.29297 17.293L13.5859 12.0001Z" fill="currentColor"></path>
@@ -42,12 +405,19 @@
         </div>
     </div>
 
+    <div class="popup-modal" id="popup-modal">
+        <div class="close-btn" id="close-btn">✖</div>
+        <a href="#" class="modal-button">Поддержка</a>
+        <a href="#" class="modal-button">Новости</a>
+        <a href="#" class="modal-button">Чат</a>
+    </div>
+
     <div class="button-bar">
-        <div onclick="location.href='shop.html';">
+        <div onclick="window.location.href='index.html'">
             <div class="emoji">🎮</div>
             <span>Магазин</span>
         </div>
-        <div onclick="location.href='#';">
+        <div onclick="window.location.href='chat.html'">
             <div class="chat-icon">
                 <svg focusable="false" aria-hidden="true" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M5 7L6 6H27L27.9912 7.13216L25.9912 22.1322L25 23H16.4142L11.7071 27.7071L10 27V23H6L5 22V7ZM14 14.5C14 15.3284 13.3284 16 12.5 16C11.6716 16 11 15.3284 11 14.5C11 13.6716 11.6716 13 12.5 13C13.3284 13 14 13.6716 14 14.5ZM19.5 16C20.3284 16 21 15.3284 21 14.5C21 13.6716 20.3284 13 19.5 13C18.6716 13 18 13.6716 18 14.5C18 15.3284 18.6716 16 19.5 16Z" fill="currentColor"></path>
@@ -55,7 +425,7 @@
             </div>
             <span>Чаты</span>
         </div>
-        <div onclick="location.href='profile.html'">
+        <div onclick="window.location.href='profile.html'">
             <span>Профиль</span>
             <div class="avatar-circle">
                 <img src="" id="avatar-img" alt="Аватар">
@@ -63,6 +433,86 @@
         </div>
     </div>
 
-    <script src="scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Добавление падающих листьев
+            const numLeaves = 10;
+            for (let i = 0; i < numLeaves; i++) {
+                const leaf = document.createElement('img');
+                leaf.src = 'https://iimg.su/s/12/exmO4uSLNzES14k5cvXwo184DncYYsB22W34Zu5I.png';
+                leaf.className = 'leaf';
+                leaf.style.left = `${Math.random() * 100}vw`;
+                leaf.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                leaf.style.animationDelay = `${Math.random() * 5}s`;
+                document.body.appendChild(leaf);
+            }
+
+            // Получение параметров из URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const avatarUrl = urlParams.get('avatar_url');
+            const username = urlParams.get('username');
+            const telegramId = urlParams.get('id');
+            const balance = urlParams.get('balance') || 0; // Если баланс отсутствует, установить 0
+
+            // Установка параметров профиля
+            if (avatarUrl) {
+                document.querySelector('.profile-avatar img').src = avatarUrl;
+            }
+
+            if (username) {
+                document.getElementById('username').innerText = username;
+            }
+
+            if (telegramId) {
+                document.getElementById('telegram-id').innerText = `ID: ${telegramId}`;
+            }
+
+            document.getElementById('balance-amount').innerText = `${balance} ₽`;
+
+            // Открытие и закрытие модального окна
+            const menuButton = document.getElementById('menu-btn');
+            const popupModal = document.getElementById('popup-modal');
+            const closeButton = document.getElementById('close-btn');
+
+            menuButton.addEventListener('click', () => {
+                popupModal.classList.add('show');
+            });
+
+            closeButton.addEventListener('click', () => {
+                popupModal.classList.remove('show');
+            });
+
+            // Копирование ID в буфер обмена
+            document.getElementById('telegram-id').addEventListener('click', () => {
+                navigator.clipboard.writeText(`ID: ${telegramId}`)
+                    .then(() => {
+                        alert('ID скопирован в буфер обмена');
+                    })
+                    .catch(err => {
+                        console.error('Ошибка при копировании ID:', err);
+                    });
+            });
+
+            // Наведение и нажатие на кнопки покупок и пополнения
+            const buttons = document.querySelectorAll('.profile-buttons a');
+            buttons.forEach(button => {
+                button.addEventListener('mouseover', () => {
+                    button.style.backgroundColor = 'rgba(48, 48, 48, 0.7)';
+                });
+
+                button.addEventListener('mousedown', () => {
+                    button.style.backgroundColor = 'rgba(48, 48, 48, 0.5)';
+                });
+
+                button.addEventListener('mouseup', () => {
+                    button.style.backgroundColor = 'rgba(48, 48, 48, 0.7)';
+                });
+
+                button.addEventListener('mouseout', () => {
+                    button.style.backgroundColor = 'rgba(44, 47, 51, 0.8)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
