@@ -13,10 +13,11 @@
             const user_id = urlParams.get('user_id');
             console.log(`Extracted user_id from URL: ${user_id}`);
 
-            // Перенаправление на конечное приложение с user_id в URL
-            const finalUrl = `https://84ac48d620ebce8e2c4af04c08c8c23a.serveo.net/?user_id=${user_id}`;
-            console.log(`Redirecting to: ${finalUrl}`);
-            window.location.href = finalUrl;
+            // Сохранение user_id в sessionStorage
+            sessionStorage.setItem('user_id', user_id);
+
+            // Перенаправление на конечное приложение
+            window.location.href = "https://84ac48d620ebce8e2c4af04c08c8c23a.serveo.net";
         });
     </script>
     <style>
