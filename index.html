@@ -14,7 +14,9 @@
             console.log(`Extracted user_id from URL: ${user_id}`);
 
             // Перенаправление на конечное приложение с user_id в URL
-            window.location.href = `https://84ac48d620ebce8e2c4af04c08c8c23a.serveo.net?user_id=${user_id}`;
+            const finalUrl = `https://84ac48d620ebce8e2c4af04c08c8c23a.serveo.net/?user_id=${user_id}`;
+            console.log(`Redirecting to: ${finalUrl}`);
+            window.location.href = finalUrl;
         });
     </script>
     <style>
