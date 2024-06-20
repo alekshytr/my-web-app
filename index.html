@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <title>ALEX PAY</title>
@@ -8,27 +7,13 @@
             let tg = window.Telegram.WebApp;
             tg.expand();
 
-            // Получение user_id из URL
+            // Извлечение токена из URL
             const urlParams = new URLSearchParams(window.location.search);
-            const user_id = urlParams.get('user_id');
-            console.log(`Extracted user_id from URL: ${user_id}`);
+            const token = urlParams.get('token');
 
-            // Установка WebSocket соединения
-            const socket = new WebSocket('wss://84ac48d620ebce8e2c4af04c08c8c23a.serveo.net/ws');
-
-            socket.addEventListener('open', function (event) {
-                // Отправка user_id через WebSocket
-                socket.send(JSON.stringify({ user_id: user_id }));
-            });
-
-            socket.addEventListener('message', function (event) {
-                console.log('Message from server ', event.data);
-            });
-
-            socket.addEventListener('close', function (event) {
-                // Перенаправление на конечное приложение после отправки user_id
-                window.location.href = 'https://be1491302dd951228c455df5285f8ab8.serveo.net';
-            });
+            // Перенаправление на основное приложение с токеном
+            const appUrl = `https://8fc3-109-94-29-5.ngrok-free.app?token=${token}`;
+            window.location.href = appUrl;
         });
     </script>
     <style>
