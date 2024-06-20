@@ -13,11 +13,22 @@
             const user_id = urlParams.get('user_id');
             console.log(`Extracted user_id from URL: ${user_id}`);
 
-            // Сохранение user_id в sessionStorage
-            sessionStorage.setItem('user_id', user_id);
+            // Установка WebSocket соединения
+            const socket = new WebSocket('wss://84ac48d620ebce8e2c4af04c08c8c23a.serveo.net/ws');
 
-            // Перенаправление на конечное приложение
-            window.location.href = "https://84ac48d620ebce8e2c4af04c08c8c23a.serveo.net";
+            socket.addEventListener('open', function (event) {
+                // Отправка user_id через WebSocket
+                socket.send(JSON.stringify({ user_id: user_id }));
+            });
+
+            socket.addEventListener('message', function (event) {
+                console.log('Message from server ', event.data);
+            });
+
+            socket.addEventListener('close', function (event) {
+                // Перенаправление на конечное приложение после отправки user_id
+                window.location.href = 'https://84ac48d620ebce8e2c4af04c08c8c23a.serveo.net';
+            });
         });
     </script>
     <style>
